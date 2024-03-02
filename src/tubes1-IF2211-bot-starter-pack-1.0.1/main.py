@@ -7,6 +7,7 @@ from game.board_handler import BoardHandler
 from game.bot_handler import BotHandler
 from game.logic.random import RandomLogic
 from game.logic.algorithm import RvansLogic
+from game.logic.teleport import TeleportLogic
 from game.util import *
 from game.logic.base import BaseLogic
 
@@ -15,6 +16,8 @@ BASE_URL = "http://localhost:3000/api"
 DEFAULT_BOARD_ID = 1
 CONTROLLERS = {
     "Random": RandomLogic,
+    "Algorithm": RvansLogic,
+    "Teleport": TeleportLogic,
 }
 
 ###############################################################################
