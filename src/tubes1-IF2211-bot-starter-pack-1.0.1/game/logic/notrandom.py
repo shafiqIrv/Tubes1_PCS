@@ -44,7 +44,7 @@ class NotrandomLogic(BaseLogic):
 
         tp = tp_1
         dist_tp = dist_tp1
-        if dist_tp1 > dist_tp2:
+        if dist_tp2 > dist_tp1:
             tp = tp_2
             dist_tp = dist_tp2
         
@@ -52,7 +52,7 @@ class NotrandomLogic(BaseLogic):
         for i in range (len(diamond_list)):
             distance_tp_list[i] = abs(tp.position.x - diamond_list[i].position.x) + abs(tp.position.y - diamond_list[i].position.y)
             if diamond_list[i].properties.points == 2:
-                distance_tp_list[i]*0.3
+                distance_tp_list[i]*0.6
         distance_pos_tp_list = list(zip(distance_tp_list,diamond_list))
         distance_pos_tp_list.sort(key=lambda x: x[0])
 
@@ -72,11 +72,11 @@ class NotrandomLogic(BaseLogic):
             if props == 4 and distance_pos_list[0][1].properties.points == 2:
                 i=1
                 while i<len(diamond_list):
-                    closest = min(dist_but*1.8, distance_pos_tp_list[i][0], distance_pos_list[i][0])
+                    closest = min(dist_but*1.8, distance_pos_tp_list[i][0]+dist_tp, distance_pos_list[i][0])
                     if closest == distance_pos_list[i][0] and distance_pos_list[i][1].properties.points==1:
                         self.goal_position = distance_pos_list[i][1].position
                         break
-                    elif closest == distance_pos_tp_list[i][0] and distance_pos_tp_list[i][1].properties.points==1:
+                    elif closest == distance_pos_tp_list[i][0]+dist_tp and distance_pos_tp_list[i][1].properties.points==1:
                         self.goal_position = tp.position
                         break
                     else:
@@ -87,10 +87,10 @@ class NotrandomLogic(BaseLogic):
                     self.goal_position = base
                     
             else:
-                closest = min(dist_but, distance_pos_tp_list[0][0], distance_pos_list[0][0])
+                closest = min(dist_but, distance_pos_tp_list[0][0]+dist_tp, distance_pos_list[0][0])
                 if closest == distance_pos_list[0][0]:
                     self.goal_position = distance_pos_list[0][1].position
-                elif closest == distance_pos_tp_list[0][0]:
+                elif closest == distance_pos_tp_list[0][0]+dist_tp:
                     self.goal_position = tp.position
                 else:
                     self.goal_position = buton.position
