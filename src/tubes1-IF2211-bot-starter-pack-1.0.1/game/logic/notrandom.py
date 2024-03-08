@@ -59,7 +59,7 @@ class NotrandomLogic(BaseLogic):
 
         buton_list = [b for b in board.game_objects if b.type == "DiamondButtonGameObject"]
         buton = buton_list[0]
-        dist_but = (abs(buton.position.x - current_pos_x) + abs(buton.position.y - current_pos_y))*1.8 + 1
+        dist_but = (abs(buton.position.x - current_pos_x) + abs(buton.position.y - current_pos_y))*1.42 + 2
 
         dist_base = abs(current_pos_x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - current_pos_y)
         dist_base_tp = abs(far_tp.position.x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - far_tp.position.y) + close_tp_dist
@@ -78,7 +78,7 @@ class NotrandomLogic(BaseLogic):
             if props.diamonds == 4 and distance_pos_list[0][1].properties.points == 2:
                 i=1
                 while i<len(diamond_list)-1:
-                    closest = min(dist_but*1.8, distance_pos_tp_list[i][0], distance_pos_list[i][0])
+                    closest = min(dist_but, distance_pos_tp_list[i][0], distance_pos_list[i][0])
                     if closest == distance_pos_list[i][0] and distance_pos_list[i][1].properties.points==1:
                         self.goal_position = distance_pos_list[i][1].position
                         break
