@@ -6,7 +6,7 @@ from ..util import get_direction
 #unsolved
 #teleporter in path to home unnacounted for
 
-class RandomLogic(BaseLogic):
+class NotrandomLogic(BaseLogic):
     def __init__(self):
         self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         self.goal_position: Optional[Position] = None
