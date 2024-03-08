@@ -1,4 +1,5 @@
-# Pemanfaatan Algoritma Greedy Dalam Pembuatan Bot Permainan Diamonds
+# Tugas Besar Strategi Algoritma 1 GROUP 26 PCS
+Pemanfaatan Algoritma Greedy Dalam Pembuatan Bot Permainan Diamonds
 
 ## Strategi Greedy
 
@@ -18,8 +19,7 @@ https://docs.google.com/document/d/1L92Axb89yIkom0b24D350Z1QAr8rujvHof7-kXRAp7c/
 6. Open the terminal from bot-starter-pack folder then type "./run-bots.bat"
 7. Make sure to change the run-bots.bat to the desired bot logic
 
-## GROUP 26 | PCS
-
+## Members
 1. 13522003	Shafiq Irvansyah
 2. 13522097	Ellijah Darrellshane S
 3. 13522127	Maulana Muhamad Susetyo
