@@ -6,6 +6,7 @@
 - Docker App
 - Node JS
 - Python
+- Yarn
 
 ## How To Setup
 1. Install Requirents from this link and follow the instructions
