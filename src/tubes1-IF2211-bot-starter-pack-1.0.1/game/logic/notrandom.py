@@ -61,14 +61,18 @@ class NotrandomLogic(BaseLogic):
         buton = buton_list[0]
         dist_but = (abs(buton.position.x - current_pos_x) + abs(buton.position.y - current_pos_y))*1.8 + 1
 
-
+        dist_base = abs(current_pos_x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - current_pos_y)
+        dist_base_tp = abs(far_tp.position.x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - far_tp.position.y) + close_tp_dist
         #print(distance_pos_tp_list[0][1].properties.points)
        
         # Analyze new state
-        if props.diamonds == 5 or (abs(current_pos_x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - current_pos_y) + 1)>=(props.milliseconds_left / 1000):
+        if props.diamonds == 5 or (min(dist_base,dist_base_tp)+1)>=(props.milliseconds_left / 1000):
             # Move to base
-            base = board_bot.properties.base
-            self.goal_position = base
+            if min(dist_base,dist_base_tp) == dist_base:
+                base = board_bot.properties.base
+                self.goal_position = base
+            else:
+                self.goal_position = close_tp.position
             
         else:
             if props.diamonds == 4 and distance_pos_list[0][1].properties.points == 2:
