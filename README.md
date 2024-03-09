@@ -2,7 +2,11 @@
 Pemanfaatan Algoritma Greedy Dalam Pembuatan Bot Permainan Diamonds
 
 ## Strategi Greedy
-
+#### located in "src\tubes1-IF2211-bot-starter-pack-1.0.1\game\logic"
+- Manhattan (manhattan.py)
+- Most Valuable Pilihan (notrandom.py)
+- Highest Density with Relatively Closest Distance (closeNdense.py)
+  
 ## Requirements
 - Docker App
 - Node JS
