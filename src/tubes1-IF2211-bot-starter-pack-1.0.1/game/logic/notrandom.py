@@ -59,7 +59,7 @@ class NotrandomLogic(BaseLogic):
         # Mencari lokasi dan jarak Tombol
         buton_list = [b for b in board.game_objects if b.type == "DiamondButtonGameObject"]
         buton = buton_list[0]
-        dist_but = (abs(buton.position.x - current_pos_x) + abs(buton.position.y - current_pos_y))*1.42 + 2
+        dist_but = (abs(buton.position.x - current_pos_x) + abs(buton.position.y - current_pos_y))*1.21 + 2
 
         dist_base = abs(current_pos_x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - current_pos_y)
         dist_base_tp = abs(far_tp.position.x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - far_tp.position.y) + close_tp_dist
