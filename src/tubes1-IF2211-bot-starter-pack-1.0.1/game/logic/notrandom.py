@@ -13,6 +13,7 @@ class NotrandomLogic(BaseLogic):
         props = board_bot.properties
         current_pos_x = board_bot.position.x
         current_pos_y = board_bot.position.y
+        base = board_bot.properties.base
 
         # Mencari semua Diamond berdasarkan jarak terhadap bot
         diamond_list = [d for d in board.game_objects if d.type == "DiamondGameObject"]
@@ -70,8 +71,7 @@ class NotrandomLogic(BaseLogic):
         # Balik ke Base apabila Inventory penuh atau waktu sudah mau habis
         if props.diamonds == 5 or min_dist>=(props.milliseconds_left / 1000):
             # Mendapatkan keperluan menggunakan teleporter untuk balik ke base
-            if min_dist-1 == dist_base:
-                base = board_bot.properties.base
+            if min_dist == (dist_base+1):
                 self.goal_position = base
             else:
                 #print("stuck111")
@@ -98,7 +98,6 @@ class NotrandomLogic(BaseLogic):
                         i+=1
                 # jika tidak ada balik ke Base
                 if distance_pos_list[i][1].properties.points==2:
-                    base = board_bot.properties.base
                     self.goal_position = base
                 else:
                     self.goal_position = distance_pos_list[i][1].position
@@ -113,10 +112,10 @@ class NotrandomLogic(BaseLogic):
                     self.goal_position = close_tp.position
                 else:
                     self.goal_position = buton.position
+        
+        # Menghindari stuck di teleporter
         if current_pos_x == self.goal_position.x and current_pos_y == self.goal_position.y:
-            base = board_bot.properties.base
             self.goal_position = base
-        base = board_bot.properties.base
         current_position = board_bot.position
         #print("GOAL=" ,self.goal_position.x, self.goal_position.y)
         #print("TP CLOSE=",close_tp.position.x,close_tp.position.y)
