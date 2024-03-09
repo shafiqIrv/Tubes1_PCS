@@ -64,13 +64,17 @@ class NotrandomLogic(BaseLogic):
         dist_base = abs(current_pos_x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - current_pos_y)
         dist_base_tp = abs(far_tp.position.x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - far_tp.position.y) + close_tp_dist
        
+        dist_base = abs(current_pos_x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - current_pos_y)
+        dist_base_tp = abs(far_tp.position.x - board_bot.properties.base.x) + abs(board_bot.properties.base.y - far_tp.position.y) + close_tp_dist
+        min_dist = min(dist_base,dist_base_tp)+1
         # Balik ke Base apabila Inventory penuh atau waktu sudah mau habis
-        if props.diamonds == 5 or (min(dist_base,dist_base_tp)+1)>=(props.milliseconds_left / 1000):
+        if props.diamonds == 5 or min_dist>=(props.milliseconds_left / 1000):
             # Mendapatkan keperluan menggunakan teleporter untuk balik ke base
-            if min(dist_base,dist_base_tp) == dist_base:
+            if min_dist-1 == dist_base:
                 base = board_bot.properties.base
                 self.goal_position = base
             else:
+                #print("stuck111")
                 self.goal_position = close_tp.position
             
         else:
@@ -84,6 +88,7 @@ class NotrandomLogic(BaseLogic):
                         self.goal_position = distance_pos_list[i][1].position
                         break
                     elif closest == distance_pos_tp_list[i][0] and distance_pos_tp_list[i][1].properties.points==1:
+                        #print("stuck222")
                         self.goal_position = close_tp.position
                         break
                     elif distance_pos_tp_list[i][0] > dist_but and distance_pos_list[i][0] > dist_but:
@@ -104,11 +109,21 @@ class NotrandomLogic(BaseLogic):
                 if closest == distance_pos_list[0][0]:
                     self.goal_position = distance_pos_list[0][1].position
                 elif closest == distance_pos_tp_list[0][0]:
+                    #print("stuck333")
                     self.goal_position = close_tp.position
                 else:
                     self.goal_position = buton.position
-
+        if current_pos_x == self.goal_position.x and current_pos_y == self.goal_position.y:
+            base = board_bot.properties.base
+            self.goal_position = base
+        base = board_bot.properties.base
         current_position = board_bot.position
+        #print("GOAL=" ,self.goal_position.x, self.goal_position.y)
+        #print("TP CLOSE=",close_tp.position.x,close_tp.position.y)
+        #print("TP FAR=",far_tp.position.x,far_tp.position.y)
+        #print("DIAMOND=",distance_pos_list[i][1].position.x,distance_pos_list[i][1].position.y)
+        #print("BASE=",base.x,base.y)
+
         if self.goal_position:
             # We are aiming for a specific position, calculate delta
             delta_x, delta_y = get_direction(
